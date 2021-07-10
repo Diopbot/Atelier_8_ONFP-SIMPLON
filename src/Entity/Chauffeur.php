@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\ChauffeurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,68 +12,80 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ChauffeurRepository::class)
  */
-#[ApiResource]
+#[ApiResource(normalizationContext: ['groups' => ['chauffeur']])]
 class Chauffeur
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"chauffeur"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=40)
+     * @Groups({"chauffeur"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=40)
+     * @Groups({"chauffeur"})
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"chauffeur"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="bigint", nullable=true)
+     * @Groups({"chauffeur"})
      */
     private $telephone;
 
     /**
      * @ORM\Column(type="string", length=40)
+     * @Groups({"chauffeur"})
      */
     private $identifiant;
 
     /**
      * @ORM\Column(type="string", length=60)
+     * @Groups({"chauffeur"})
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"chauffeur"})
      */
     private $mdp;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"chauffeur"})
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"chauffeur"})
      */
     private $permis;
 
     /**
      * @ORM\Column(type="bigint")
+     * @Groups({"chauffeur"})
      */
     private $cni;
 
     /**
      * @ORM\OneToMany(targetEntity=Voiture::class, mappedBy="chauffeur", orphanRemoval=true)
+     * @Groups({"chauffeur"})
      */
     private $voitures;
 

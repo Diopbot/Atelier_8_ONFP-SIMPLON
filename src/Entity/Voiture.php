@@ -3,60 +3,70 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=VoitureRepository::class)
  */
-#[ApiResource]
+#[ApiResource(normalizationContext: ['groups' => ['voiture']])]
 class Voiture
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"voiture"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Groups({"voiture"})
      */
     private $matricule;
 
     /**
      * @ORM\Column(type="string", length=40)
+     * @Groups({"voiture"})
      */
     private $marque;
 
     /**
      * @ORM\Column(type="string", length=40, nullable=true)
+     * @Groups({"voiture"})
      */
     private $model;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"voiture"})
      */
     private $assurance;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"voiture"})
      */
     private $visiteTechnique;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"voiture"})
      */
     private $carteGrise;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"voiture"})
      */
     private $materielSecours;
 
     /**
      * @ORM\ManyToOne(targetEntity=Chauffeur::class, inversedBy="voitures")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"voiture"})
      */
     private $chauffeur;
 
