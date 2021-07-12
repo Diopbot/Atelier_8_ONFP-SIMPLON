@@ -10,10 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository", repositoryClass=VoitureRepository::class)
- * @ApiResource(
- *     normalizationContext: ['groups' => ['read']],
-       denormalizationContext: ['groups' => ['write']],
- * )
+ * @ApiResource()
  */
 class Voiture
 {
